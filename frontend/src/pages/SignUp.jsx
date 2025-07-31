@@ -5,6 +5,8 @@ import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 import axios from "axios";
 import { ClipLoader } from "react-spinners";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setUserData } from "../redux/userSlice";
 const SignUp = () => {
   const nav = useNavigate();
   const [inputClicked, setInputClicked] = useState({
@@ -13,6 +15,7 @@ const SignUp = () => {
     userName: false,
     password: false,
   });
+  const dispatch = useDispatch();
 
   const [showPassword, setShowPassword] = useState(false);
   const [name, setName] = useState("");
@@ -36,7 +39,7 @@ const SignUp = () => {
           withCredentials: true,
         }
       );
-      console.log(res);
+      dispatch(setUserData(res.data.user));
       setLoading(false);
     } catch (error) {
       console.log(error);
