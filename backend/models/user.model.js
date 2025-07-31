@@ -52,12 +52,22 @@ const userSchema = new mongoose.Schema(
         ref: "Loop",
       },
     ],
-    stories: [
+    story: [
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Story",
       },
     ],
+    resetOtp: {
+      type: String,
+    },
+    otpExpiries: {
+      type: Date,
+    },
+    isOtpVerified: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     timestamps: true,
