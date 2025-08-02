@@ -17,3 +17,13 @@ export const getCurrentUser = async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 };
+export const suggestedUser = async (req, res) => {
+  try {
+    const users = await User.find({ _id: { $ne: req.userId } })
+      .limit(5)
+      .select("-password");
+    res.status(200).json(users);
+  } catch (error) {
+    res.status(500).json({ message: "Internal server error" });
+  }
+};

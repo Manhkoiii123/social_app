@@ -40,6 +40,7 @@ const SignUp = () => {
         }
       );
       dispatch(setUserData(res.data.user));
+      nav("/");
       setLoading(false);
     } catch (error) {
       console.log(error);
