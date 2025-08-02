@@ -3,7 +3,11 @@ import { RxVideo } from "react-icons/rx";
 import { FiPlusSquare } from "react-icons/fi";
 import { GoHomeFill } from "react-icons/go";
 import dp from "../assets/dp.webp";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 const Nav = () => {
+  const { userData } = useSelector((state) => state.user);
+  const nav = useNavigate();
   return (
     <div className="w-[90%] lg:w-[40%] h-[80px] bg-black flex justify-around items-center fixed bottom-[20px] rounded-full shadow-2xl shadow-[#000000] z-[100]">
       <div>
@@ -18,7 +22,12 @@ const Nav = () => {
       <div>
         <RxVideo className="text-white w-[25px] h-[25px]" />
       </div>
-      <div className="w-[70px] h-[70px] border-2 border-black rounded-full cursor-pointer overflow-hidden">
+      <div
+        onClick={() => {
+          nav(`/profile/${userData.userName}`);
+        }}
+        className="w-[70px] h-[70px] border-2 border-black rounded-full cursor-pointer overflow-hidden"
+      >
         <img src={dp} alt="" className="w-full h-full object-cover" />
       </div>
     </div>
